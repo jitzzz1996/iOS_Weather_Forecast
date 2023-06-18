@@ -22,7 +22,6 @@ class WeatherDetailsViewController: UIViewController {
         super.viewDidLoad()
         self.baseSetup()
         self.configuration()
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func locationButtonAction(_ sender: UIButton) {
@@ -46,6 +45,7 @@ class WeatherDetailsViewController: UIViewController {
         self.cityLabel.text = data?.cityName
         self.conditionImageView.image = UIImage(systemName: data?.conditionName ?? "cloud")
     }
+
     func setupErrorView() {
         self.temperatureLabel.text = "N/A"
         self.cityLabel.text = "N/A"
@@ -56,11 +56,11 @@ class WeatherDetailsViewController: UIViewController {
 
 }
 extension WeatherDetailsViewController {
+
     func configuration() {
         observeEvent()
     }
-    
-    
+
     func observeEvent() {
         viewModel.eventHandler = { [weak self] event in
             guard let self else { return }
