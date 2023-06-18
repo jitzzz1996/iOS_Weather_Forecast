@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct WeatherData: Decodable {
+struct WeatherData: Codable {
        let coord: CoordinationData
        let weather: [WeatherMainData]
        let base: String
