@@ -8,21 +8,24 @@
 import Foundation
 
 enum WeatherEndPoint {
-    case weatherDetails(_:String?) // Module - GET
+    case weatherByCityName(_:String?) // Module - GET
+    case weatherByLatLong(_:String?,_:String?)
 }
 
 extension WeatherEndPoint: EndPointType {
     
     var path: String {
         switch self {
-        case .weatherDetails(let cityName):
+        case .weatherByCityName(let cityName):
             return "&q=\(cityName ?? "")"
+        case .weatherByLatLong(let latitude, let Longitude):
+            return "&lat=\(latitude ?? "")&lon=\(Longitude ?? "")"
         }
     }
     
     var baseURL: String {
         switch self {
-        case .weatherDetails:
+        case .weatherByCityName,.weatherByLatLong:
             return Constant.API.weatherInfoURL
         }
     }
@@ -33,14 +36,14 @@ extension WeatherEndPoint: EndPointType {
     
     var method: HTTPMethods {
         switch self {
-        case .weatherDetails:
+        case .weatherByCityName,.weatherByLatLong:
             return .get
         }
     }
     
     var body: Encodable? {
         switch self {
-        case .weatherDetails:
+        case .weatherByCityName,.weatherByLatLong:
             return nil
         }
     }

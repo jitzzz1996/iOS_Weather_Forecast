@@ -12,11 +12,27 @@ final class WeatherDetailsViewModel {
     var weatherModel: WeatherModel?
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
     
-    func fetchWeatherDetails(cityName:String?) {
+    func fetchWeatherDetails(cityname name:String?) {
         self.eventHandler?(.loading)
         APIManager.shared.request(
             modelType: WeatherData.self,
-            type: WeatherEndPoint.weatherDetails(cityName)) { response in
+            type: WeatherEndPoint.weatherByCityName(name)) { response in
+                self.eventHandler?(.stopLoading)
+                switch response {
+                case .success(let weatherData):
+                    self.setupWeatherModel(data: weatherData)
+                    self.eventHandler?(.dataLoaded)
+                case .failure(let error):
+                    self.eventHandler?(.error(error))
+                }
+            }
+    }
+    
+    func fetchWeatherDetails(latitude lat:String?, longitude long :String?) {
+        self.eventHandler?(.loading)
+        APIManager.shared.request(
+            modelType: WeatherData.self,
+            type: WeatherEndPoint.weatherByLatLong(lat, long)) { response in
                 self.eventHandler?(.stopLoading)
                 switch response {
                 case .success(let weatherData):
@@ -29,8 +45,8 @@ final class WeatherDetailsViewModel {
     }
     
     private func setupWeatherModel(data: WeatherData?) {
-        let id = data?.weather[0].id
-        let temeprature = data?.main.temp
+        let id = data?.weather?[0].id
+        let temeprature = data?.main?.temp
         let name = data?.name
         let weather = WeatherModel(conditionId: id, cityName: name, temeperature: temeprature)
         self.weatherModel = weather

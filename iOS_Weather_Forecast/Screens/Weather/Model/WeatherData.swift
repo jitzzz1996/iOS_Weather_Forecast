@@ -7,33 +7,33 @@
 
 import Foundation
 struct WeatherData: Codable {
-       let coord: CoordinationData
-       let weather: [WeatherMainData]
-       let base: String
-       let main: MainData
-       let visibility: Int
-       let wind: WindData
-       let clouds: CloudsData
-       let dt: Int
-       let sys: SysData
-       let timezone, id: Int
-       let name: String
-       let cod: Int
+       let coord: CoordinationData?
+       let weather: [WeatherMainData]?
+       let base: String?
+       let main: MainData?
+       let visibility: Int?
+       let wind: WindData?
+       let clouds: CloudsData?
+       let dt: Int?
+       let sys: SysData?
+       let timezone, id: Int?
+       let name: String?
+       let cod: Int?
 }
 // MARK: - Clouds
 struct CloudsData: Codable {
-    let all: Int
+    let all: Int?
 }
 
 // MARK: - Coord
 struct CoordinationData: Codable {
-    let lon, lat: Double
+    let lon, lat: Double?
 }
 
 // MARK: - Main
 struct MainData: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, humidity: Int
+    let temp, feelsLike, tempMin, tempMax: Double?
+    let pressure, humidity, seaLevel, grndLevel: Int?
 
     enum CodingKeys: String, CodingKey {
         case temp
@@ -41,24 +41,27 @@ struct MainData: Codable {
         case tempMin = "temp_min"
         case tempMax = "temp_max"
         case pressure, humidity
+        case seaLevel = "sea_level"
+        case grndLevel = "grnd_level"
     }
 }
 
 // MARK: - Sys
 struct SysData: Codable {
-    let type, id: Int
-    let country: String
-    let sunrise, sunset: Int
+    let type, id: Int?
+    let country: String?
+    let sunrise, sunset: Int?
 }
 
 // MARK: - Weather
 struct WeatherMainData: Codable {
-    let id: Int
-    let main, description, icon: String
+    let id: Int?
+    let main, description, icon: String?
 }
 
 // MARK: - Wind
 struct WindData: Codable {
-    let speed: Double
-    let deg: Int
+    let speed: Double?
+    let deg: Int?
+    let gust: Double?
 }
