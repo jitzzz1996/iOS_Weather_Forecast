@@ -58,13 +58,37 @@
 			children = (
 				4F9E6F882A3A3786006A93DC /* AppDelegate.swift */,
 				4F9E6F8A2A3A3786006A93DC /* SceneDelegate.swift */,
-				4F9E6F8C2A3A3786006A93DC /* ViewController.swift */,
-				4F9E6F8E2A3A3786006A93DC /* Main.storyboard */,
+				4FFD7CD22A3D9DCC00E5890D /* Controller */,
+				4FFD7CD12A3D9DC400E5890D /* View */,
+				4FFD7CD02A3D9DB600E5890D /* Model */,
 				4F9E6F912A3A3788006A93DC /* Assets.xcassets */,
 				4F9E6F932A3A3788006A93DC /* LaunchScreen.storyboard */,
 				4F9E6F962A3A3788006A93DC /* Info.plist */,
 			);
 			path = iOS_Weather_Forecast;
+			sourceTree = "<group>";
+		};
+		4FFD7CD02A3D9DB600E5890D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4FFD7CD12A3D9DC400E5890D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4F9E6F8E2A3A3786006A93DC /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4FFD7CD22A3D9DCC00E5890D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4F9E6F8C2A3A3786006A93DC /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
